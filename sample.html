@@ -68,7 +68,14 @@
             {{#if isImage}}
                 <a href="{{link}}"><img class="img-thumbnail" alt="[ preview of {{shortFilename 16}} will display here ]" src="{{link}}" width="150"></a>
             {{else}}
-               <span class="text-muted">No preview</span>
+                {{#if isVideo}}
+                    <video webkit-playsinline width="300" height="240" controls preload="auto">
+                      <source src="{{link}}?cache=172800" type={{contentType}}>
+                      Your browser does not support the video tag.
+                    </video>
+                {{else}}
+                    <span class="text-muted">No preview</span>
+                {{/if}}
             {{/if}}
           </td>
         </tr>

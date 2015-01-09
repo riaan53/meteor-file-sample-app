@@ -126,6 +126,12 @@ if Meteor.isClient
    Template.collTest.userId = () ->
       Meteor.userId()
 
+   Template.collTest.isVideo = () ->
+      percent = Session.get "#{this._id}"
+      unless percent?
+        return true if this.contentType.indexOf('video') > -1
+      else
+        return false
 ############################################################
 # Server-only code
 ############################################################
