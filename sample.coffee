@@ -138,6 +138,18 @@ if Meteor.isClient
 
 if Meteor.isServer
 
+   clearUplaods = ->
+      myData.remove filename:
+        $nin: [
+          'rally.mp4'
+          'chopper.mp4'
+          'bunny.ogv'
+          'bunny.webm'
+          'bunny.mp4'
+          'mush.jpg'
+        ]
+      return
+
    Meteor.startup () ->
 
       # Only publish files owned by this userId, and ignore temp file chunks used by resumable
@@ -153,6 +165,7 @@ if Meteor.isServer
       # Don't allow users to modify the user docs
       Meteor.users.deny({update: () -> true })
 
+      Meteor.setInterval clearUplaods, 600000
       # Allow rules for security. Without these, no writes would be allowed by default
       myData.allow
          insert: (userId, file) ->

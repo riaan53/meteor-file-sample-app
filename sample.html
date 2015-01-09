@@ -13,7 +13,7 @@
 
 <template name="collTest">
   <div class="container panel">
-    <h3>file-collection Test App</h3>
+    <h3>file-collection Test App (DB will be cleared every 10 mins)</h3>
     {{#if currentUser}}
       <span class="pull-right"><b>UserId:</b> <span class="text-info">{{userId}}</span>
       <b>Token:</b> <span class="text-info">{{loginToken}}</span></span>
@@ -69,7 +69,7 @@
                 <a href="{{link}}"><img class="img-thumbnail" alt="[ preview of {{shortFilename 16}} will display here ]" src="{{link}}" width="150"></a>
             {{else}}
                 {{#if isVideo}}
-                    <video webkit-playsinline width="300" height="240" controls preload="auto">
+                    <video webkit-playsinline width="300" height="240" controls preload="metadata">
                       <source src="{{link}}?cache=172800" type={{contentType}}>
                       Your browser does not support the video tag.
                     </video>
